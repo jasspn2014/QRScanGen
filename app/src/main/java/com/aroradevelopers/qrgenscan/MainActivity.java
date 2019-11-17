@@ -6,8 +6,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
@@ -68,18 +68,23 @@ public class MainActivity extends Activity {
                                 LinearLayout.LayoutParams.MATCH_PARENT
                                );
 
+                        input.setTextColor(Color.WHITE);
+                        if(txt_result.getText().toString().matches("")) {
+                            input.setText("Please Enter a URL");
+                             input.setHintTextColor(Color.GRAY);}
+
                         input.setLayoutParams(lp);
                         builder.setView(input)
 
                                 .setPositiveButton("Generate", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         finish();
-                                        if(txt_result.getText().toString().length()>1){
+                                        try{
                                             Intent intent = new Intent(MainActivity.this,NewQRActivity.class);
                                             intent.putExtra(MyConstants.KEY_URL_STRING,input.getText().toString());
                                             startActivity(intent);
                                         }
-                                        else
+                                        catch (Exception e)
                                         {
                                             android.widget.Toast.makeText(MainActivity.this, "URL String Can't Be Empty", Toast.LENGTH_SHORT).show();
 

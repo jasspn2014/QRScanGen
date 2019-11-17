@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -28,18 +29,25 @@ public class NewQRActivity extends Activity {
         textView = findViewById(R.id.url_txt);
         textView.setText(txtResult);
         imageView = findViewById(R.id.qr_code);
+        String emptyString = "Please Enter a URL";
+        if (txtResult.matches(emptyString)) {
+            Toast.makeText(NewQRActivity.this,"Please Scan a QR Code or Enter a URL",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
 
-        MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-        try {
-            BitMatrix bitMatrix = multiFormatWriter.encode(txtResult, BarcodeFormat.QR_CODE,650,650);
-            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-            Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
-            imageView.setImageBitmap(bitmap);
-        } catch (WriterException e) {
-            e.printStackTrace();
+        } else {
+            MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+            try {
+                BitMatrix bitMatrix = multiFormatWriter.encode(txtResult, BarcodeFormat.QR_CODE, 650, 650);
+                BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+                Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+                imageView.setImageBitmap(bitmap);
+            } catch (WriterException e) {
+                e.printStackTrace();
+            }
+
         }
     }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();

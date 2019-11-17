@@ -34,14 +34,14 @@
         android:orientation="vertical">
 
         <EditText
-            android:textColorHint="#fff"
+            android:textColorHint="@android:color/darker_gray"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/infoUrl"
             android:gravity="center"
-            android:textColor="#ffffff"
             android:textSize="18sp"
-            android:hint="QR Scanner Generator"
+            android:hint="QR GenScan"
+            android:textColor="#fff"
             android:padding="10dp"
             android:backgroundTint="@android:color/white"
             android:maxLines="1"
