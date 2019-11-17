@@ -68,10 +68,10 @@ public class MainActivity extends Activity {
                                 LinearLayout.LayoutParams.MATCH_PARENT
                                );
 
-                        input.setTextColor(Color.WHITE);
+                        input.setTextColor(Color.BLACK);
                         if(txt_result.getText().toString().matches("")) {
                             input.setText("Please Enter a URL");
-                             input.setHintTextColor(Color.GRAY);}
+                             input.setHintTextColor(Color.BLACK);}
 
                         input.setLayoutParams(lp);
                         builder.setView(input)
